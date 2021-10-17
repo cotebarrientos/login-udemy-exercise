@@ -17,3 +17,12 @@ code {
   padding-right: 5px;
   font-size: 25px;
 }
+
+.btn-my-custom-info {
+  background-color: #1b9db7;
+  border: #06aacb;
+}
+
+.btn-my-custom-info:hover {
+  background-color: #06aacb;
+}
