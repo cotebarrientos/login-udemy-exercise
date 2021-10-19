@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {db} from '../firebase'
+import moment from 'moment'
 
 const Tasks = (props) => {
     // Get all Tasks
@@ -32,7 +33,7 @@ const Tasks = (props) => {
     }
 
     getData()
-    }, [])
+    }, [props.user.uid])
 
 
     // To add a new task in the database
@@ -118,48 +119,50 @@ const Tasks = (props) => {
     <div className="container mt-3">
         <div className="row">
         <div className="col-md-8 col-xs-12">
-            <h4 className="text-center mt-3 mb-3">My TODO</h4>
-            <ul className="list-group">
+            <h4 className="text-center mt-3 mb-3">My TODO List</h4>
             {
 
                 tasks.length === 0 ? (
-                <li className="list-group-item">
-                    <span className="lead">Sorry, no items yet</span>
+                <div className="col-12 task-box">
+                    <span className="task-p">Sorry, no items yet</span>
                     <span>
                     <i className="far fa-frown ms-2"></i>
                     </span>
-                </li>
+                </div>
                 ) : (
                 tasks.map(item => (
-                <li 
-                    className="list-group-item"
+                <div 
+                    className="row task-box"
                     key={item.id}
                     >
-                    <span className="lead">{item.name}</span>
+                    <div className="col-lg-8 col-xs-12">
+                        <span className="task-p">{item.name}</span> - <small className="text-muted">{moment(item.date).format('LLL')}</small>
+                    </div>
+                    <div className="col-lg-4 col-md-12">
                         <button 
-                        className="btn btn-danger btn-sm float-end mx-2"
-                        onClick={() => deleteTask(item.id)}
-                        >
-                        <span className="text-uppercase">Delete</span>
-                        <span>
-                            <i className="far fa-trash-alt ms-2"></i>
-                        </span>  
+                            className="btn btn-danger btn-sm ms-2 me-2 mt-2 mb-2 float-end"
+                            onClick={() => deleteTask(item.id)}
+                            >
+                            <span className="text-uppercase">Delete</span>
+                            <span>
+                                <i className="far fa-trash-alt ms-2"></i>
+                            </span>  
                         </button>
-    
+        
                         <button 
-                        className="btn btn-warning btn-sm float-end"
-                        onClick={() => activateEditingTaskMode(item)}
-                        >
-                        <span className="text-uppercase">Edit</span>
-                        <span>
-                            <i className="fas fa-pen ms-2"></i>
-                        </span> 
+                            className="btn btn-warning btn-sm mt-2 mb-2 float-end"
+                            onClick={() => activateEditingTaskMode(item)}
+                            >
+                            <span className="text-uppercase">Edit</span>
+                            <span>
+                                <i className="fas fa-pen ms-2"></i>
+                            </span> 
                         </button>
-                </li>
+                    </div>
+                </div>
                 ))
                 )
             }
-            </ul>
         </div>
         <div className="col-md-4 col-xs-12">
             <h4 className="text-center mt-3 mb-3">
