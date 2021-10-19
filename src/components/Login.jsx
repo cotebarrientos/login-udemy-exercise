@@ -127,15 +127,27 @@ const Login = (props) => {
                                     isRegister ? "fas fa-user-plus ms-2" : "fas fa-sign-in-alt ms-2"
                                     }></i>
                             </button>
+                            {
+                                !isRegister ? (
+                                    <button 
+                                        className="btn btn-sm btn-warning mt-1 mb-1"
+                                        type="button"
+                                        onClick={() => props.history.push('/reset-password')}
+                                    >
+                                        Forgot your password?
+                                    </button>
+                                ) : null
+                            }
                             <button 
                                 className="btn btn-sm btn-my-custom-info text-light mb-5"
                                 type="button"
                                 onClick={() => setIsRegister(!isRegister)}
                             >
                                 {
-                                   isRegister ? 'Already registered?' : '¿Do not have an account yet?' 
+                                   isRegister ? 'Already registered?' : 'Do not have an account yet?' 
                                 }
                             </button>
+                            
                         </div>
                     </form>
                 </div>

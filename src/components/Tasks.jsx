@@ -123,7 +123,7 @@ const Tasks = (props) => {
             {
 
                 tasks.length === 0 ? (
-                <div className="col-12 task-box">
+                <div className="col-12 task-box ms-2 me-2">
                     <span className="task-p">Sorry, no items yet</span>
                     <span>
                     <i className="far fa-frown ms-2"></i>
@@ -132,7 +132,7 @@ const Tasks = (props) => {
                 ) : (
                 tasks.map(item => (
                 <div 
-                    className="row task-box"
+                    className="row task-box ms-2 me-2"
                     key={item.id}
                     >
                     <div className="col-lg-8 col-xs-12">
@@ -150,7 +150,7 @@ const Tasks = (props) => {
                         </button>
         
                         <button 
-                            className="btn btn-warning btn-sm mt-2 mb-2 float-end"
+                            className="btn btn-warning btn-sm mt-2 mb-2 ms-2 me-2 float-end"
                             onClick={() => activateEditingTaskMode(item)}
                             >
                             <span className="text-uppercase">Edit</span>

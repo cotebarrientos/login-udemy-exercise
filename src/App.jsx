@@ -7,6 +7,7 @@ import Admin from './components/Admin';
 import Home from './components/Home';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
+import Reset from './components/Reset';
 import {auth } from './firebase'
 
 
@@ -27,11 +28,14 @@ function App() {
 
   return firebaseUser !== false ? (
     <Router>
-      <div className="container pe-0 ps-0">
+      <div className="container">
           <Navbar firebaseUser={firebaseUser} />
           <Switch>
               <Route path="/login">
                   <Login /> 
+              </Route>
+              <Route path="/reset-password">
+                  <Reset />
               </Route>
               <Route path="/admin">
                   <Admin />
