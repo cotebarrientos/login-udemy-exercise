@@ -1,10 +1,12 @@
-import React, {useState} from 'react'
+import React, { useCallback, useState } from 'react'
+import { auth, db } from '../firebase'
 
 const Login = () => {
 
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
     const [error, setError] = useState(null)
+    const [isRegister, setIsRegister] = useState(true)
 
     const processData = e => {
         e.preventDefault()
@@ -21,20 +23,49 @@ const Login = () => {
             return
         }
         
-        if(pass.length < 6) {
+        if(pass.length < 6){
             // console.log('You must enter a password at least 6 characters long')
             setError('You must enter a password at least 6 characters long')
             return
         }
-        setError(null)
+        
         console.log("It's everything ok")
+        setError(null)
+
+        if(isRegister){
+            registration()
+        }
     
     }
+
+    const registration = useCallback(async() => {
+
+        try {
+            const res = await auth.createUserWithEmailAndPassword(email, pass)
+            console.log(res.user)
+            await db.collection('users').doc(res.user.email).set({
+                email: res.user.email,
+                uid: res.user.uid
+            })
+            setEmail('')
+            setPass('')
+            setError(null)
+
+        } catch(error) {
+            console.log(error)
+            setError(error.message)
+        }
+
+    }, [email, pass])
 
 
     return (
         <div className="mt-4">
-             <h2 className="text-center">User registration</h2>
+             <h2 className="text-center">
+                 {
+                     isRegister ? 'User Registration' : 'Login'
+                 }
+             </h2>
             <hr className="mb-5"/>
             <div className="row justify-content-center me-0">
                 <div className="col-12 col-sm-8 col-md-6 col-xl-4">
@@ -66,14 +97,21 @@ const Login = () => {
                                 className="btn btn-lg btn-dark mt-3"
                                 type="submit"
                             >
-                                Login
-                                <i className="fas fa-sign-in-alt ms-2"></i>
+                                {
+                                    isRegister ? 'Register' : 'Login'
+                                }
+                                <i className={
+                                    isRegister ? "fas fa-user-plus ms-2" : "fas fa-sign-in-alt ms-2"
+                                    }></i>
                             </button>
                             <button 
                                 className="btn btn-sm btn-my-custom-info text-light mb-5"
                                 type="button"
+                                onClick={() => setIsRegister(!isRegister)}
                             >
-                                ¿Do not have an account yet?
+                                {
+                                   isRegister ? 'Already registered?' : '¿Do not have an account yet?' 
+                                }
                             </button>
                         </div>
                     </form>

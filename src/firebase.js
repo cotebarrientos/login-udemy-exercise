@@ -4,11 +4,11 @@ import 'firebase/auth';
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    authDomain: "crud-simple-app-udemy.firebaseapp.com",
-    projectId: "crud-simple-app-udemy",
-    storageBucket: "crud-simple-app-udemy.appspot.com",
-    messagingSenderId: "704944000617",
-    appId: "1:704944000617:web:9c600c494a0ae8d3d09cf8"
+    authDomain: "login-udemy-exercise.firebaseapp.com",
+    projectId: "login-udemy-exercise",
+    storageBucket: "login-udemy-exercise.appspot.com",
+    messagingSenderId: "1028739090166",
+    appId: "1:1028739090166:web:132d653dd9feccdc4aced7"
   };
   
   // Initialize Firebase
