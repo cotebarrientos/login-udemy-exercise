@@ -1,21 +1,39 @@
+import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router, 
   Switch, 
   Route} from 'react-router-dom'
+import Admin from './components/Admin';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
+import {auth } from './firebase'
+
 
 function App() {
-  return (
+
+  const [firebaseUser, setFirebaseUser] = useState(false)
+
+  useEffect(() => {
+    auth.onAuthStateChanged(user => {
+        console.log(user)
+        if(user){
+            setFirebaseUser(user)
+        }else{
+            setFirebaseUser(null)
+        }
+    })
+}, [])
+
+  return firebaseUser !== false ? (
     <Router>
       <div className="container pe-0 ps-0">
-          <Navbar />
+          <Navbar firebaseUser={firebaseUser} />
           <Switch>
               <Route path="/login">
                   <Login /> 
               </Route>
               <Route path="/admin">
-                  Admin
+                  <Admin />
               </Route>
               <Route path="/" exact>
                   Home
@@ -23,6 +41,8 @@ function App() {
           </Switch>
       </div>
     </Router>
+  ) : (
+    <div>Loading ...</div>
   );
 }
 

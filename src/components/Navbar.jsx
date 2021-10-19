@@ -1,7 +1,17 @@
 import React from 'react'
-import {Link, NavLink} from 'react-router-dom'
+import {Link, NavLink, withRouter} from 'react-router-dom'
+import {auth} from '../firebase'
 
-const Navbar = () => {
+
+const Navbar = (props) => {
+
+    const logout = () => {
+        auth.signOut()
+            .then(() => {
+                props.history.push('/login')
+            })
+    }
+
     return (
         <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
             <Link to="/" className="navbar-brand text-uppercase">
@@ -24,24 +34,46 @@ const Navbar = () => {
                             <i className="fas fa-home ms-2"></i>
                         </NavLink>
                     </li>
-                    <li className="nav-item">
-                        <NavLink 
-                            className="nav-link me-3 ms-3" 
-                            to="/admin"
-                        >
-                            Admin
-                            <i className="fas fa-user-cog ms-2"></i>
-                         </NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink 
-                            className="nav-link me-3 ms-3" 
-                            to="/login"
-                        >
-                            Login
-                            <i className="fas fa-user ms-2"></i>
-                        </NavLink>
-                    </li>
+                    {
+                        props.firebaseUser !== null ? (
+                            <li className="nav-item">
+                                <NavLink 
+                                    className="nav-link me-3 ms-3" 
+                                    to="/admin"
+                                >
+                                    Admin
+                                    <i className="fas fa-user-cog ms-2"></i>
+                                </NavLink>
+                            </li>
+                        ) : null
+                    }
+                    
+                    {
+                        props.firebaseUser !== null ? (
+                            <li className="nav-item">
+                                <NavLink
+                                    className="nav-link me-3 ms-3"
+                                    onClick={() => logout()}
+                                    to="/login"
+                                >
+                                Logout
+                                <i className="fas fa-sign-out-alt ms-2"></i>
+                                </NavLink>
+                            </li>
+
+                        ) : (
+                            <li className="nav-item">
+                                <NavLink 
+                                    className="nav-link me-3 ms-3" 
+                                    to="/login"
+                                >
+                                    Login
+                                    <i className="fas fa-user ms-2"></i>
+                                </NavLink>
+                            </li>
+                        )
+                    }
+                    
                 </ul>
                 
             </div>
@@ -49,4 +81,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default withRouter(Navbar)

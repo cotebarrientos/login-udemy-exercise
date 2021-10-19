@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from 'react'
 import { auth, db } from '../firebase'
+import { withRouter } from 'react-router-dom'
 
-const Login = () => {
+const Login = (props) => {
 
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
@@ -46,12 +47,13 @@ const Login = () => {
             setEmail('')
             setPass('')
             setError(null)
+            props.history.push('/admin') 
 
         } catch(error){
             console.log(error)
             setError(error.message)
         }
-    },[email, pass],
+    },[email, pass, props.history],
     )
 
     const registration = useCallback(async() => {
@@ -66,13 +68,14 @@ const Login = () => {
             setEmail('')
             setPass('')
             setError(null)
+            props.history.push('/admin') 
 
         } catch(error) {
             console.log(error)
             setError(error.message)
         }
 
-    }, [email, pass])
+    }, [email, pass, props.history])
 
 
     return (
@@ -137,4 +140,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default withRouter(Login)
