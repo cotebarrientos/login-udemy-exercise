@@ -15,7 +15,7 @@ const Navbar = (props) => {
     return (
         <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
             <Link to="/" className="navbar-brand text-uppercase">
-                <span className="brand-ico"><i className="fab fa-react"></i></span>My React App
+                <span className="brand-ico"><i className="fab fa-react"></i></span>CRUD Simple App
             </Link>
             <button className="navbar-toggler me-3" type="button" data-bs-toggle="collapse" 
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 

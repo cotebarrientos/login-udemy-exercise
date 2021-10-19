@@ -4,6 +4,7 @@ import {
   Switch, 
   Route} from 'react-router-dom'
 import Admin from './components/Admin';
+import Home from './components/Home';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
 import {auth } from './firebase'
@@ -36,7 +37,7 @@ function App() {
                   <Admin />
               </Route>
               <Route path="/" exact>
-                  Home
+                  <Home />
               </Route>
           </Switch>
       </div>

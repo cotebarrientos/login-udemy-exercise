@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { withRouter } from "react-router-dom";
 import {auth} from '../firebase'
+import Tasks from './Tasks';
 
 const Admin = (props) => {
 
@@ -18,11 +19,14 @@ const Admin = (props) => {
 
     return (
         <div className="mt-4">
-            <h2 className="text-center">Admin</h2>
+            <h2 className="text-center">
+                Welcome to your Admin panel
+                <i className="fas fa-user text-warning ms-2"></i>
+            </h2>
             <hr />
             {
                 user && (
-                    <h4>Welcome <span className="text-success">{user.email}</span></h4>
+                    <Tasks user={user}/>
                 )
             }
         </div>
