@@ -34,9 +34,25 @@ const Login = () => {
 
         if(isRegister){
             registration()
+        } else {
+            login()
         }
     
     }
+
+    const login = useCallback(async() => {
+        try {
+            await auth.signInWithEmailAndPassword(email, pass)  
+            setEmail('')
+            setPass('')
+            setError(null)
+
+        } catch(error){
+            console.log(error)
+            setError(error.message)
+        }
+    },[email, pass],
+    )
 
     const registration = useCallback(async() => {
 
