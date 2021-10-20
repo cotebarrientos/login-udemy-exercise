@@ -1,5 +1,7 @@
 # CRUD Simple app V3
 
+![CRUD Simple App](https://github.com/cotebarrientos/login-udemy-exercise/blob/main/src/img/crud-simple-app-v3.png?raw=true)
+
 This mini project is version 3 from the app with the same name. This version includes the functionality to create a user profile, which allows you to save custom tasks in a TODO list, enhancing further the **CRUD** methodology. 
 
 This mini project is part of the exercises done in my specialization course about **React JS** and **Redux** taught in [Udemy](https://www.udemy.com/course/curso-react-js/), and also this project makes use of the **Firestore** database and the Firebase host.
@@ -9,7 +11,7 @@ If you want you can check the previous versions in this list:
 - [CRUD Simple App V1](https://github.com/cotebarrientos/crud-simple-app-exercise)
 - [CRUD Simple App V2](https://github.com/cotebarrientos/crud-simple-app-v2)
 
-You can visit this mini project by clicking [here]()
+You can visit this mini project by clicking [here](https://login-udemy-exercise.web.app/)
 
 ## Technologies Used
 
