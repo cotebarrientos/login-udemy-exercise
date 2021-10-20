@@ -15,17 +15,42 @@ const Tasks = (props) => {
     // Get Id
     const [id, setId] = useState('')
 
+    const [lastTask, setLastTask] = useState(null)
+    const [disable, setDisable] = useState(false)
+
     //Get all task stored in Firebase Firestore
     useEffect(() => {
     
     const getData = async () => {
 
         try {
+        
+            setDisable(true)
 
-        const data = await db.collection(props.user.uid).get()
-        const arrayData = data.docs.map(doc => ({id: doc.id, ...doc.data()}))
-        console.log(arrayData)
-        setTasks(arrayData)
+            const data = await db.collection(props.user.uid)
+                .limit(6)
+                .orderBy('date')
+                .get()
+            
+            const arrayData = data.docs.map(doc => ({id: doc.id, ...doc.data()}))
+
+            setLastTask(data.docs[data.docs.length - 1])
+
+            console.log(arrayData)
+            setTasks(arrayData)
+
+            const query = await db.collection(props.user.uid)
+                .limit(6)
+                .orderBy('date')
+                .startAfter(data.docs[data.docs.length - 1])
+                .get()
+
+            if(query.empty){
+                setDisable(true)
+            }else{
+                setDisable(false)
+            }
+
         } catch (error) {
         console.log(error)
         }
@@ -84,17 +109,17 @@ const Tasks = (props) => {
 
     // To activate the editing Mode
     const activateEditingTaskMode = (item) => {
-    setEditingMode(true)
-    setTask(item.name)
-    setId(item.id)
+        setEditingMode(true)
+        setTask(item.name)
+        setId(item.id)
     }
 
     // To edit a selected task
     const editTask = async (e) => {
-    e.preventDefault()
-    if(!task.trim()){
-        return
-    }
+        e.preventDefault()
+        if(!task.trim()){
+            return
+        }
     try {
 
         await db.collection(props.user.uid).doc(id).update({
@@ -114,6 +139,42 @@ const Tasks = (props) => {
     }
     }
 
+    const nextList = async () => {
+        console.log('next')
+        try {
+
+            const data = await db.collection(props.user.uid)
+                .limit(6)
+                .orderBy('date')
+                .startAfter(lastTask)
+                .get()
+
+            const arrayData = data.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }))
+            setTasks([
+                ...tasks,
+                ...arrayData
+            ])
+            setLastTask(data.docs[data.docs.length - 1])
+
+            const query = await db.collection(props.user.uid)
+                .limit(6)
+                .orderBy('date')
+                .startAfter(data.docs[data.docs.length - 1])
+                .get()
+
+            if(query.empty){
+                setDisable(true)
+            }else{
+                setDisable(false)
+            }
+
+        } catch(error) {
+            console.log(error)
+        }
+    }
 
     return (
     <div className="container mt-3">
@@ -163,6 +224,16 @@ const Tasks = (props) => {
                 ))
                 )
             }
+            <div className="d-grid gap-2 col-4 mx-auto mt-3 mb-3">
+                <button 
+                    className="btn btn-primary mt-2 btn-sm text-uppercase"
+                    onClick={() => nextList()}
+                    disabled={disable}
+                >
+                    Next
+                    <i className="fas fa-chevron-circle-right ms-2"></i>
+                </button>
+            </div>
         </div>
         <div className="col-md-4 col-xs-12">
             <h4 className="text-center mt-3 mb-3">
