@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# CRUD Simple app V3
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This mini project is version 3 from the app with the same name. This version includes the functionality to create a user profile, which allows you to save custom tasks in a TODO list, enhancing further the **CRUD** methodology. 
 
-## Available Scripts
+This mini project is part of the exercises done in my specialization course about **React JS** and **Redux** taught in [Udemy](https://www.udemy.com/course/curso-react-js/), and also this project makes use of the **Firestore** database and the Firebase host.
 
-In the project directory, you can run:
+If you want you can check the previous versions in this list:
 
-### `npm start`
+- [CRUD Simple App V1](https://github.com/cotebarrientos/crud-simple-app-exercise)
+- [CRUD Simple App V2](https://github.com/cotebarrientos/crud-simple-app-v2)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+You can visit this mini project by clicking [here]()
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Technologies Used
 
-### `npm test`
+### Languages
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- HTML 5
+- CSS 3
+- JavaScript
+- JSX
+- React JS
 
-### `npm run build`
+### Libraries
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Bootstrap 5
+- Font Awesome 5.15.4
+- Moment JS
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Database
+- Firestore
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Tools Used
+- Firebase
+- VS Code
+- Git
+- GitHub
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Deployment
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Clone Project from GitHub
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**1.** Follow this link to the [Project GitHub repository](https://github.com/cotebarrientos/login-udemy-exercise).
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**2.** Scroll to the top of this repository and click on the "clone or download button".
 
-## Learn More
+**3.** Decide whether you want to clone the project using HTTPS or an SSH key and do the following:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **HTTPS:** click on the checklist icon to the right of the URL.
+- **SSH key:** first click on 'Use SSH' then click on the same icon as above.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+**4.** Open the 'Terminal'.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**5.** Choose the location for the cloned directory.
 
-### Analyzing the Bundle Size
+**6.** Type `git clone`, and then paste the clone URL.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- `git clone https://github.com/USERNAME/REPOSITORY`
 
-### Making a Progressive Web App
+**7.** Press 'Enter' to create your local clone.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Local Deployment
 
-### Advanced Configuration
+For local deployment you must have an IDE, like for example **VS Code**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+**1.** After cloning this project, navigate to the correct file location after unpacking the files.
 
-### Deployment
+- `cd <path to folder>`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+**2.** Then run the following command in the terminal, in order to run this project locally.
 
-### `npm run build` fails to minify
+- `npm start`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**3.** After that, this React project should be running on `http://localhost:3000/`
+
+## Credits
+
+### Code
+
+Some of the code used was based on the exercise shown in the React JS From  [React JS Desde Cero! Hooks, Redux, Context, Firebase y más!](https://www.udemy.com/course/curso-react-js/)
+
+### Acknowledgements
+
+I would like to thank the following people who encouraged me to continue specializing in the IT area.
+
+- My boyfriend.
+- My family and friends
